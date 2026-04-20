@@ -60,8 +60,8 @@ No timeline dragging. No keyframe tweaking. Just chat with the Agent.
     <td align="center"><b>Result</b></td>
   </tr>
   <tr>
-    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/vlog-creator.mp4" controls width="420"></video></td>
-    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/vlog-res.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://github.com/MeiGen-AI/X-Cut/raw/main/assets/videos/vlog-creator.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://github.com/MeiGen-AI/X-Cut/raw/main/assets/videos/vlog-res.mp4" controls width="420"></video></td>
   </tr>
 </table>
 
@@ -76,8 +76,8 @@ No timeline dragging. No keyframe tweaking. Just chat with the Agent.
     <td align="center"><b>Result</b></td>
   </tr>
   <tr>
-    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/marketing-creator.mp4" controls width="420"></video></td>
-    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/marketing-res.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://github.com/MeiGen-AI/X-Cut/raw/main/assets/videos/marketing-creator.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://github.com/MeiGen-AI/X-Cut/raw/main/assets/videos/marketing-res.mp4" controls width="420"></video></td>
   </tr>
 </table>
 
@@ -93,8 +93,8 @@ No timeline dragging. No keyframe tweaking. Just chat with the Agent.
     <td align="center"><b>Result</b></td>
   </tr>
   <tr>
-    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit.mp4" controls width="420"></video></td>
-    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit-res.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://github.com/MeiGen-AI/X-Cut/raw/main/assets/videos/free-edit.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://github.com/MeiGen-AI/X-Cut/raw/main/assets/videos/free-edit-res.mp4" controls width="420"></video></td>
   </tr>
 </table>
 
@@ -108,8 +108,8 @@ No timeline dragging. No keyframe tweaking. Just chat with the Agent.
     <td align="center"><b>Result</b></td>
   </tr>
   <tr>
-    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit2.mp4" controls width="420"></video></td>
-    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit-res2.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://github.com/MeiGen-AI/X-Cut/raw/main/assets/videos/free-edit2.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://github.com/MeiGen-AI/X-Cut/raw/main/assets/videos/free-edit-res2.mp4" controls width="420"></video></td>
   </tr>
 </table>
 
@@ -122,7 +122,7 @@ No timeline dragging. No keyframe tweaking. Just chat with the Agent.
     <td align="center"><b>Screen Recording</b></td>
   </tr>
   <tr>
-    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/style-replication.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://github.com/MeiGen-AI/X-Cut/raw/main/assets/videos/style-replication.mp4" controls width="420"></video></td>
   </tr>
 </table>
 
