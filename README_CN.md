@@ -56,7 +56,7 @@ X-CUT 是一个 AI 视频剪辑 Agent——通过**自然语言对话**将创意
 
 | 录屏演示 | 成片效果 |
 |:---:|:---:|
-| ![Vlog 录屏](assets/videos/vlog-creator.mp4) | ![Vlog 成片](assets/videos/vlog-res.mp4) |
+| ![Vlog 录屏](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/vlog-creator.mp4) | ![Vlog 成片](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/vlog-res.mp4) |
 
 #### 营销宣传片制作
 
@@ -65,7 +65,7 @@ X-CUT 是一个 AI 视频剪辑 Agent——通过**自然语言对话**将创意
 
 | 录屏演示 | 成片效果 |
 |:---:|:---:|
-| ![营销录屏](assets/videos/marketing-creator.mp4) | ![营销成片](assets/videos/marketing-res.mp4) |
+| ![营销录屏](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/marketing-creator.mp4) | ![营销成片](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/marketing-res.mp4) |
 
 #### 自由编辑
 
@@ -75,7 +75,7 @@ X-CUT 是一个 AI 视频剪辑 Agent——通过**自然语言对话**将创意
 
 | 录屏演示 | 成片效果 |
 |:---:|:---:|
-| ![自由编辑录屏](assets/videos/free-edit.mp4) | ![自由编辑成片](assets/videos/free-edit-res.mp4) |
+| ![自由编辑录屏](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit.mp4) | ![自由编辑成片](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit-res.mp4) |
 
 > **素材：** 多段视频片段  
 > **指令：** *"给这几个素材加上转场"*  
@@ -83,7 +83,7 @@ X-CUT 是一个 AI 视频剪辑 Agent——通过**自然语言对话**将创意
 
 | 录屏演示 | 成片效果 |
 |:---:|:---:|
-| ![自由编辑2录屏](assets/videos/free-edit2.mp4) | ![自由编辑2成片](assets/videos/free-edit-res2.mp4) |
+| ![自由编辑2录屏](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit2.mp4) | ![自由编辑2成片](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit-res2.mp4) |
 
 #### 风格分享与复用
 
@@ -91,7 +91,7 @@ X-CUT 是一个 AI 视频剪辑 Agent——通过**自然语言对话**将创意
 
 | 录屏演示 |
 |:---:|
-| ![风格复用](assets/videos/style-replication.mp4) |
+| ![风格复用](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/style-replication.mp4) |
 
 
 ## 🧩 技能系统

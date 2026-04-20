@@ -56,7 +56,7 @@ No timeline dragging. No keyframe tweaking. Just chat with the Agent.
 
 | Screen Recording | Result |
 |:---:|:---:|
-| ![Vlog Screen Recording](assets/videos/vlog-creator.mp4) | ![Vlog Result](assets/videos/vlog-res.mp4) |
+| ![Vlog Screen Recording](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/vlog-creator.mp4) | ![Vlog Result](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/vlog-res.mp4) |
 
 #### Marketing Video Creation
 
@@ -65,7 +65,7 @@ No timeline dragging. No keyframe tweaking. Just chat with the Agent.
 
 | Screen Recording | Result |
 |:---:|:---:|
-| ![Marketing Screen Recording](assets/videos/marketing-creator.mp4) | ![Marketing Result](assets/videos/marketing-res.mp4) |
+| ![Marketing Screen Recording](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/marketing-creator.mp4) | ![Marketing Result](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/marketing-res.mp4) |
 
 #### Free Edit
 
@@ -75,7 +75,7 @@ No timeline dragging. No keyframe tweaking. Just chat with the Agent.
 
 | Screen Recording | Result |
 |:---:|:---:|
-| ![Free Edit Screen Recording](assets/videos/free-edit.mp4) | ![Free Edit Result](assets/videos/free-edit-res.mp4) |
+| ![Free Edit Screen Recording](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit.mp4) | ![Free Edit Result](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit-res.mp4) |
 
 > **Assets:** Multi video clips  
 > **Prompt:** *"Add transitions to these materials"*  
@@ -83,7 +83,7 @@ No timeline dragging. No keyframe tweaking. Just chat with the Agent.
 
 | Screen Recording | Result |
 |:---:|:---:|
-| ![Free Edit 2 Screen Recording](assets/videos/free-edit2.mp4) | ![Free Edit 2 Result](assets/videos/free-edit-res2.mp4) |
+| ![Free Edit 2 Screen Recording](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit2.mp4) | ![Free Edit 2 Result](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit-res2.mp4) |
 
 #### Style Sharing and Replication
 
@@ -91,7 +91,7 @@ No timeline dragging. No keyframe tweaking. Just chat with the Agent.
 
 | Screen Recording |
 |:---:|
-| ![Style Replication](assets/videos/style-replication.mp4) |
+| ![Style Replication](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/style-replication.mp4) |
 
 ---
 
