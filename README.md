@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="xcut_frontend/src/resources/x-cut.png" alt="X-CUT" width="140" style="border-radius: 15px;">
+<img src="assets/figs/x-cut.png" alt="X-CUT" width="140" style="border-radius: 15px;">
 
 # X-CUT: Chat-Driven Video Editing Agent with Real-Time Rendering
 
@@ -54,32 +54,18 @@ No timeline dragging. No keyframe tweaking. Just chat with the Agent.
 > **Assets:** 5 travel video clips  
 > **Prompt:** *"Help me make a beach travel vlog"*
 
-<table align="center">
-  <tr>
-    <td align="center"><b>Screen Recording</b></td>
-    <td align="center"><b>Result</b></td>
-  </tr>
-  <tr>
-    <td align="center"><video src="assets/videos/vlog-creator.mp4" controls width="420"></video></td>
-    <td align="center"><video src="assets/videos/vlog-res.mp4" controls width="420"></video></td>
-  </tr>
-</table>
+| Screen Recording | Result |
+|:---:|:---:|
+| ![Vlog Screen Recording](assets/videos/vlog-creator.mp4) | ![Vlog Result](assets/videos/vlog-res.mp4) |
 
 #### Marketing Video Creation
 
 > **Assets:** 9 product pictures (screenshot from Xiaomi's official website)  
 > **Prompt:** *"Make a promotional video for the Xiaomi Yu7."*
 
-<table align="center">
-  <tr>
-    <td align="center"><b>Screen Recording</b></td>
-    <td align="center"><b>Result</b></td>
-  </tr>
-  <tr>
-    <td align="center"><video src="assets/videos/marketing-creator.mp4" controls width="420"></video></td>
-    <td align="center"><video src="assets/videos/marketing-res.mp4" controls width="420"></video></td>
-  </tr>
-</table>
+| Screen Recording | Result |
+|:---:|:---:|
+| ![Marketing Screen Recording](assets/videos/marketing-creator.mp4) | ![Marketing Result](assets/videos/marketing-res.mp4) |
 
 #### Free Edit
 
@@ -87,44 +73,25 @@ No timeline dragging. No keyframe tweaking. Just chat with the Agent.
 > **Prompt:** *"Generate a Hainan travel guide in the right third of the screen, mock some data, make it detailed."*  
 > **Later:** *"Change the background to transparent."*
 
-<table align="center">
-  <tr>
-    <td align="center"><b>Screen Recording</b></td>
-    <td align="center"><b>Result</b></td>
-  </tr>
-  <tr>
-    <td align="center"><video src="assets/videos/free-edit.mov" controls width="420"></video></td>
-    <td align="center"><video src="assets/videos/free-edit-res.mp4" controls width="420"></video></td>
-  </tr>
-</table>
+| Screen Recording | Result |
+|:---:|:---:|
+| ![Free Edit Screen Recording](assets/videos/free-edit.mp4) | ![Free Edit Result](assets/videos/free-edit-res.mp4) |
 
 > **Assets:** Multi video clips  
 > **Prompt:** *"Add transitions to these materials"*  
 > **Later:** *"1. Change to push-pull effect; 2. Add a forest VLOG title with Chinese-English layout, English as subtitle, plus some geometric decorative elements, transparent background."*
 
-<table align="center">
-  <tr>
-    <td align="center"><b>Screen Recording</b></td>
-    <td align="center"><b>Result</b></td>
-  </tr>
-  <tr>
-    <td align="center"><video src="assets/videos/free-edit2.mov" controls width="420"></video></td>
-    <td align="center"><video src="assets/videos/free-edit-res2.mp4" controls width="420"></video></td>
-  </tr>
-</table>
+| Screen Recording | Result |
+|:---:|:---:|
+| ![Free Edit 2 Screen Recording](assets/videos/free-edit2.mp4) | ![Free Edit 2 Result](assets/videos/free-edit-res2.mp4) |
 
 #### Style Sharing and Replication
 
 > Share your editing recipe as a reusable style via the "Share" button — export as `.md` or save to your space. Apply any style to a new project to instantly generate videos in the same style.
 
-<table align="center">
-  <tr>
-    <td align="center"><b>Screen Recording</b></td>
-  </tr>
-  <tr>
-    <td align="center"><video src="assets/videos/style-replication.mp4" controls width="420"></video></td>
-  </tr>
-</table>
+| Screen Recording |
+|:---:|
+| ![Style Replication](assets/videos/style-replication.mp4) |
 
 ---
 
