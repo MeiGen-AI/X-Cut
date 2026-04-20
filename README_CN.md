@@ -54,18 +54,32 @@ X-CUT 是一个 AI 视频剪辑 Agent——通过**自然语言对话**将创意
 > **素材：** 5 段旅拍视频  
 > **指令：** *"帮我做一个海边旅行 Vlog"*
 
-| 录屏演示 | 成片效果 |
-|:---:|:---:|
-| ![Vlog 录屏](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/vlog-creator.mp4) | ![Vlog 成片](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/vlog-res.mp4) |
+<table align="center">
+  <tr>
+    <td align="center"><b>录屏演示</b></td>
+    <td align="center"><b>成片效果</b></td>
+  </tr>
+  <tr>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/vlog-creator.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/vlog-res.mp4" controls width="420"></video></td>
+  </tr>
+</table>
 
 #### 营销宣传片制作
 
 > **素材：** 9 张产品图片（截图自小米官网）  
 > **指令：** *"帮小米 YU7 做一个宣传视频"*
 
-| 录屏演示 | 成片效果 |
-|:---:|:---:|
-| ![营销录屏](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/marketing-creator.mp4) | ![营销成片](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/marketing-res.mp4) |
+<table align="center">
+  <tr>
+    <td align="center"><b>录屏演示</b></td>
+    <td align="center"><b>成片效果</b></td>
+  </tr>
+  <tr>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/marketing-creator.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/marketing-res.mp4" controls width="420"></video></td>
+  </tr>
+</table>
 
 #### 自由编辑
 
@@ -73,25 +87,44 @@ X-CUT 是一个 AI 视频剪辑 Agent——通过**自然语言对话**将创意
 > **指令：** *"在画面右侧三分之一处生成一个海南旅游攻略，mock一份数据，尽量详细一点"*  
 > **后续：** *"把背景改成透明"*
 
-| 录屏演示 | 成片效果 |
-|:---:|:---:|
-| ![自由编辑录屏](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit.mp4) | ![自由编辑成片](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit-res.mp4) |
+<table align="center">
+  <tr>
+    <td align="center"><b>录屏演示</b></td>
+    <td align="center"><b>成片效果</b></td>
+  </tr>
+  <tr>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit-res.mp4" controls width="420"></video></td>
+  </tr>
+</table>
 
 > **素材：** 多段视频片段  
 > **指令：** *"给这几个素材加上转场"*  
 > **后续：** *"1.修改为推拉效果； 2.增加一个森林里VLOG标题，中英文排版，英文为副标题，并增加一些几何元素装饰，透明背景"*
 
-| 录屏演示 | 成片效果 |
-|:---:|:---:|
-| ![自由编辑2录屏](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit2.mp4) | ![自由编辑2成片](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit-res2.mp4) |
+<table align="center">
+  <tr>
+    <td align="center"><b>录屏演示</b></td>
+    <td align="center"><b>成片效果</b></td>
+  </tr>
+  <tr>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit2.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit-res2.mp4" controls width="420"></video></td>
+  </tr>
+</table>
 
 #### 风格分享与复用
 
 > 通过「分享」按钮将剪辑风格提炼为可复用模板，以 `.md` 文件分享或保存到个人空间。下次创建新项目时，可直接使用该模板生成相似风格的视频。
 
-| 录屏演示 |
-|:---:|
-| ![风格复用](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/style-replication.mp4) |
+<table align="center">
+  <tr>
+    <td align="center"><b>录屏演示</b></td>
+  </tr>
+  <tr>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/style-replication.mp4" controls width="420"></video></td>
+  </tr>
+</table>
 
 
 ## 🧩 技能系统

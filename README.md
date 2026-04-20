@@ -54,18 +54,32 @@ No timeline dragging. No keyframe tweaking. Just chat with the Agent.
 > **Assets:** 5 travel video clips  
 > **Prompt:** *"Help me make a beach travel vlog"*
 
-| Screen Recording | Result |
-|:---:|:---:|
-| ![Vlog Screen Recording](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/vlog-creator.mp4) | ![Vlog Result](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/vlog-res.mp4) |
+<table align="center">
+  <tr>
+    <td align="center"><b>Screen Recording</b></td>
+    <td align="center"><b>Result</b></td>
+  </tr>
+  <tr>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/vlog-creator.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/vlog-res.mp4" controls width="420"></video></td>
+  </tr>
+</table>
 
 #### Marketing Video Creation
 
 > **Assets:** 9 product pictures (screenshot from Xiaomi's official website)  
 > **Prompt:** *"Make a promotional video for the Xiaomi Yu7."*
 
-| Screen Recording | Result |
-|:---:|:---:|
-| ![Marketing Screen Recording](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/marketing-creator.mp4) | ![Marketing Result](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/marketing-res.mp4) |
+<table align="center">
+  <tr>
+    <td align="center"><b>Screen Recording</b></td>
+    <td align="center"><b>Result</b></td>
+  </tr>
+  <tr>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/marketing-creator.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/marketing-res.mp4" controls width="420"></video></td>
+  </tr>
+</table>
 
 #### Free Edit
 
@@ -73,25 +87,44 @@ No timeline dragging. No keyframe tweaking. Just chat with the Agent.
 > **Prompt:** *"Generate a Hainan travel guide in the right third of the screen, mock some data, make it detailed."*  
 > **Later:** *"Change the background to transparent."*
 
-| Screen Recording | Result |
-|:---:|:---:|
-| ![Free Edit Screen Recording](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit.mp4) | ![Free Edit Result](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit-res.mp4) |
+<table align="center">
+  <tr>
+    <td align="center"><b>Screen Recording</b></td>
+    <td align="center"><b>Result</b></td>
+  </tr>
+  <tr>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit-res.mp4" controls width="420"></video></td>
+  </tr>
+</table>
 
 > **Assets:** Multi video clips  
 > **Prompt:** *"Add transitions to these materials"*  
 > **Later:** *"1. Change to push-pull effect; 2. Add a forest VLOG title with Chinese-English layout, English as subtitle, plus some geometric decorative elements, transparent background."*
 
-| Screen Recording | Result |
-|:---:|:---:|
-| ![Free Edit 2 Screen Recording](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit2.mp4) | ![Free Edit 2 Result](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit-res2.mp4) |
+<table align="center">
+  <tr>
+    <td align="center"><b>Screen Recording</b></td>
+    <td align="center"><b>Result</b></td>
+  </tr>
+  <tr>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit2.mp4" controls width="420"></video></td>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/free-edit-res2.mp4" controls width="420"></video></td>
+  </tr>
+</table>
 
 #### Style Sharing and Replication
 
 > Share your editing recipe as a reusable style via the "Share" button — export as `.md` or save to your space. Apply any style to a new project to instantly generate videos in the same style.
 
-| Screen Recording |
-|:---:|
-| ![Style Replication](https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/style-replication.mp4) |
+<table align="center">
+  <tr>
+    <td align="center"><b>Screen Recording</b></td>
+  </tr>
+  <tr>
+    <td align="center"><video src="https://s3plus-bj02.sankuai.com/agent-vision/x-cut-github/videos/style-replication.mp4" controls width="420"></video></td>
+  </tr>
+</table>
 
 ---
 
