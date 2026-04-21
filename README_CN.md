@@ -214,6 +214,11 @@ https://github.com/user-attachments/assets/46b244ce-3ebb-459d-b320-80e696807a8f
 ---
 
 ## 🤝 参与贡献
+
+### 成员
+
+- [Yurui](https://github.com/DimplesL)
+- [Junwei](https://github.com/junwei0812)
 ---
 
 ## 📄 许可证
