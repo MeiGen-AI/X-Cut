@@ -214,6 +214,11 @@ We are preparing the open-source model/API integration guide — code coming soo
 ---
 
 ## 🤝 Contributing
+
+### Members
+
+- [Yurui](https://github.com/DimplesL)
+- [Junwei](https://github.com/junwei0812)
 ---
 
 ## 📄 License
