@@ -2,7 +2,7 @@
 
 <img src="assets/figs/x-cut.png" alt="X-CUT" width="140" style="border-radius: 15px;">
 
-# X-CUT: Chat-Driven Video Editing Agent with Real-Time Rendering
+# X-CUT: Chat-Driven Video Editing Agent, powered by Real-Time Preview and Diverse Skills
 
 [![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/) [![React 18](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=white)](https://react.dev/) [![TypeScript](https://img.shields.io/badge/TypeScript-5.2-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/) [![Remotion](https://img.shields.io/badge/Remotion-4.0-0B84F3?style=flat-square)](https://www.remotion.dev/) [![Agno](https://img.shields.io/badge/Agno-Agent_Framework-FF6B35?style=flat-square)](https://github.com/agno-agi/agno) [![License](https://img.shields.io/badge/License-AGPL--3.0-blue?style=flat-square)](LICENSE)
 
@@ -16,7 +16,7 @@
 
 ## 📖 Overview
 
-X-CUT is an AI video editing Agent.  You can simply describe your idea in the chat interface; the Agent understands your intent, clarifies when needed, dynamically selects and combines skills, and edits a multi-track timeline. The entire process is rendered in real time onto tracks via Remotion — every step is instantly visible! No timeline dragging. No keyframe tweaking. Just chat with X-Cut.
+X-CUT is an AI video editing Agent.  You can simply describe your idea in the chat interface; leveraging a rich set of skills, the Agent understands your intent, clarifies when needed, dynamically selects and combines skills, and edits a multi-track timeline. The entire process is rendered in real time onto tracks via Remotion — every step is instantly visible! No timeline dragging. No keyframe tweaking. Just chat with X-Cut.
 
 > **"Turn my travel footage into a Vlog with chill background music and subtitles"**
 > — The Agent takes it from there: asset analysis, script generation, visual arrangement, music, dubbing, MG animation, and final rendering — all from a single sentence.
