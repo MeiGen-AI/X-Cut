@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X-CUT — Chat-Driven Video Editing Agent</title>
+<meta name="description" content="X-CUT is an AI video editing Agent. Describe your idea in chat; the Agent edits a multi-track timeline rendered in real time via Remotion.">
+<link rel="icon" type="image/png" href="assets/figs/x-cut.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Geist+Mono&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Base ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #0a0a09;
+  color: #afaeac;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4 { color: #faf9f6; font-weight: 400; }
+h1 { font-size: 72px; line-height: 1.0; letter-spacing: -2.4px; }
+h2 { font-size: 48px; line-height: 1.2; letter-spacing: -0.96px; }
+h3 { font-size: 24px; line-height: 1.3; letter-spacing: -0.48px; }
+a { color: inherit; text-decoration: none; }
+
+/* ── Utility ── */
+.container { max-width: 1500px; margin: 0 auto; padding: 0 40px; }
+.section { padding: 100px 0; }
+.label {
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2.4px;
+  color: #868584;
+  margin-bottom: 24px;
+}
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #353534;
+  color: #afaeac;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+.pill-btn:hover { opacity: 0.85; }
+.pill-btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* ── Navigation ── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(10, 10, 9, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 226, 226, 0.1);
+}
+.nav-inner {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-brand img { width: 36px; height: 36px; border-radius: 8px; }
+.nav-brand span { font-size: 18px; font-weight: 500; color: #faf9f6; letter-spacing: -0.2px; }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.nav-links a {
+  font-size: 15px;
+  color: #868584;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: #faf9f6; }
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.lang-toggle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #868584;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(226, 226, 226, 0.15);
+  padding: 6px 14px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+.lang-toggle:hover { color: #faf9f6; border-color: rgba(226, 226, 226, 0.35); }
+.nav-github .pill-btn { padding: 8px 20px; font-size: 14px; }
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #faf9f6;
+  margin: 5px 0;
+  transition: all 0.3s;
+}
+
+/* ── Hero ── */
+.hero {
+  padding: 180px 0 120px;
+  text-align: center;
+}
+.hero-brand {
+  font-size: 96px;
+  font-weight: 500;
+  color: #faf9f6;
+  letter-spacing: -3px;
+  line-height: 1.0;
+  margin-bottom: 16px;
+}
+.hero h1 { margin-bottom: 28px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+.hero-sub {
+  font-size: 20px;
+  color: #afaeac;
+  max-width: 680px;
+  margin: 0 auto 40px;
+  line-height: 1.5;
+  letter-spacing: -0.2px;
+}
+.hero-quote {
+  font-size: 17px;
+  color: #868584;
+  font-style: italic;
+  max-width: 620px;
+  margin: 0 auto 48px;
+  line-height: 1.5;
+  padding: 20px 32px;
+  border-left: 2px solid rgba(226, 226, 226, 0.2);
+}
+.hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* ── Interface Overview ── */
+.interface-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.interface-card {
+  border: 1px solid rgba(226, 226, 226, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  transition: transform 0.3s, border-color 0.3s;
+}
+.interface-card:hover { transform: translateY(-4px); border-color: rgba(226, 226, 226, 0.35); }
+.interface-card img { width: 100%; display: block; }
+.interface-card .card-label {
+  padding: 16px 20px;
+  font-size: 15px;
+  color: #868584;
+  text-align: center;
+}
+
+/* ── Features (Barrage / Marquee) ── */
+.features-barrage {
+  overflow: hidden;
+  padding: 8px 0;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+.barrage-row {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  padding: 8px 0;
+}
+.barrage-row.scroll-left  { animation: scrollLeft  var(--duration, 35s) linear infinite; }
+.barrage-row.scroll-right { animation: scrollRight var(--duration, 35s) linear infinite; }
+.features-barrage:hover .barrage-row { animation-play-state: paused; }
+@keyframes scrollLeft  { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+.barrage-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(226, 226, 226, 0.12);
+  border-radius: 50px;
+  padding: 14px 28px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: border-color 0.3s, background 0.3s;
+}
+.barrage-pill:hover { border-color: rgba(226, 226, 226, 0.35); background: rgba(255, 255, 255, 0.07); }
+.barrage-pill .bp-icon { font-size: 22px; flex-shrink: 0; }
+.barrage-pill .bp-title { font-size: 16px; font-weight: 500; color: #faf9f6; }
+.barrage-pill .bp-desc  { font-size: 14px; color: #868584; margin-left: 4px; }
+
+/* ── Demo Showcase ── */
+.demo-block { margin-bottom: 80px; }
+.demo-block:last-child { margin-bottom: 0; }
+.demo-header { margin-bottom: 12px; }
+.demo-header h3 { margin-bottom: 8px; }
+.demo-meta {
+  font-size: 15px;
+  color: #868584;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+.demo-meta strong { color: #afaeac; font-weight: 500; }
+.demo-videos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.demo-video-wrap {
+  border: 1px solid rgba(226, 226, 226, 0.12);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+}
+.demo-video-wrap video { width: 100%; display: block; }
+.demo-video-label {
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #868584;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+}
+.demo-single { max-width: 800px; }
+
+/* ── Team ── */
+.team-grid {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+.team-card {
+  text-align: center;
+  transition: transform 0.3s;
+}
+.team-card:hover { transform: translateY(-4px); }
+.team-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid rgba(226, 226, 226, 0.15);
+  margin-bottom: 14px;
+}
+.team-name { font-size: 18px; color: #faf9f6; margin-bottom: 4px; }
+.team-link { font-size: 14px; color: #868584; transition: color 0.2s; }
+.team-link:hover { color: #faf9f6; }
+
+/* ── Footer ── */
+.footer {
+  padding: 60px 0;
+  border-top: 1px solid rgba(226, 226, 226, 0.1);
+  text-align: center;
+}
+.footer-slogan {
+  font-size: 20px;
+  color: #faf9f6;
+  margin-bottom: 16px;
+  letter-spacing: -0.2px;
+}
+.footer-meta { font-size: 14px; color: #868584; }
+.footer-meta a { text-decoration: underline; text-underline-offset: 3px; }
+.footer-meta a:hover { color: #afaeac; }
+
+/* ── Responsive: Tablet ── */
+@media (max-width: 1500px) {
+  h1 { font-size: 56px; letter-spacing: -1.6px; }
+  h2 { font-size: 40px; }
+  .hero-brand { font-size: 80px; }
+  .hero { padding: 160px 0 100px; }
+}
+
+@media (max-width: 1024px) {
+  .barrage-pill .bp-desc { display: none; }
+}
+
+/* ── Responsive: Mobile ── */
+@media (max-width: 810px) {
+  body { font-size: 16px; }
+  .hero-brand { font-size: 56px; letter-spacing: -2px; }
+  h1 { font-size: 40px; letter-spacing: -1.2px; }
+  h2 { font-size: 32px; letter-spacing: -0.6px; }
+  .container { padding: 0 20px; }
+  .section { padding: 64px 0; }
+  .nav-links { display: none; }
+  .nav-github { display: none; }
+  .hamburger { display: block; }
+  .nav-inner { padding: 0 20px; }
+
+  /* Mobile menu */
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 9, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 24px 20px;
+    gap: 20px;
+    border-bottom: 1px solid rgba(226, 226, 226, 0.1);
+  }
+
+  .hero { padding: 120px 0 80px; }
+  .hero-sub { font-size: 17px; }
+  .hero-quote { font-size: 15px; padding: 16px 20px; }
+
+  .interface-grid { grid-template-columns: 1fr; gap: 16px; }
+  .barrage-pill { padding: 10px 20px; }
+  .barrage-pill .bp-desc { display: none; }
+  .demo-videos { grid-template-columns: 1fr; }
+  .team-grid { flex-direction: column; align-items: center; gap: 32px; }
+}
+
+/* ── Animations ── */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <img src="assets/figs/x-cut.png" alt="X-CUT Logo">
+      <span>X-CUT</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#interface" class="i18n" data-en="Interface" data-zh="界面展示">Interface</a>
+      <a href="#features" class="i18n" data-en="Features" data-zh="核心功能">Features</a>
+      <a href="#demos" class="i18n" data-en="Demos" data-zh="演示视频">Demos</a>
+      <a href="#team" class="i18n" data-en="Team" data-zh="团队">Team</a>
+    </div>
+    <div class="nav-actions">
+      <button class="lang-toggle" id="langToggle" aria-label="Toggle language">EN / 中</button>
+      <div class="nav-github">
+        <a href="https://github.com/MeiGen-AI/X-Cut" target="_blank" rel="noopener" class="pill-btn">
+          <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <span class="i18n" data-en="Star on GitHub" data-zh="GitHub Star">Star on GitHub</span>
+        </a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="container">
+    <p class="hero-brand">X-Cut</p>
+    <p class="label">AI VIDEO EDITING AGENT</p>
+    <h1 class="i18n" data-en="Chat-Driven Video Editing with Real-Time Rendering" data-zh="对话驱动的 AI 视频剪辑，实时渲染，所见即所得">Chat-Driven Video Editing with Real-Time Rendering</h1>
+    <p class="hero-sub i18n"
+      data-en="Describe your idea in chat. X-CUT understands your intent, dynamically selects skills, and edits a multi-track timeline — all rendered in real time."
+      data-zh="在对话框中描述你的想法，X-CUT 理解你的意图，动态选择技能，编辑多轨时间线 — 全程实时渲染。">
+      Describe your idea in chat. X-CUT understands your intent, dynamically selects skills, and edits a multi-track timeline — all rendered in real time.
+    </p>
+    <blockquote class="hero-quote i18n"
+      data-en="&ldquo;Turn my travel footage into a Vlog with chill background music and subtitles&rdquo; — The Agent takes it from there."
+      data-zh="&ldquo;把我的旅行素材剪成一个 Vlog，加上轻松的背景音乐和字幕&rdquo; — 剩下的交给 Agent。">
+      &ldquo;Turn my travel footage into a Vlog with chill background music and subtitles&rdquo; — The Agent takes it from there.
+    </blockquote>
+    <div class="hero-actions">
+      <a href="https://github.com/MeiGen-AI/X-Cut" target="_blank" rel="noopener" class="pill-btn">
+        <svg viewBox="0 0 16 16" style="width:18px;height:18px;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        <span class="i18n" data-en="View on GitHub" data-zh="在 GitHub 上查看">View on GitHub</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Interface Overview ── -->
+<section class="section" id="interface">
+  <div class="container">
+    <p class="label fade-in i18n" data-en="INTERFACE OVERVIEW" data-zh="界面总览">INTERFACE OVERVIEW</p>
+    <h2 class="fade-in i18n" data-en="Designed for Creative Flow" data-zh="为创作心流而设计" style="margin-bottom: 48px;">Designed for Creative Flow</h2>
+    <div class="interface-grid">
+      <div class="interface-card fade-in">
+        <img src="assets/figs/interface/entry.png" alt="X-CUT Entry" loading="lazy">
+        <div class="card-label i18n" data-en="Entry — Start a new project" data-zh="入口 — 开始新项目">Entry — Start a new project</div>
+      </div>
+      <div class="interface-card fade-in">
+        <img src="assets/figs/interface/chat-canvas.png" alt="Chat + Canvas" loading="lazy">
+        <div class="card-label i18n" data-en="Chat + Canvas — Script preview" data-zh="对话 + 画布 — 脚本预览">Chat + Canvas — Script preview</div>
+      </div>
+      <div class="interface-card fade-in">
+        <img src="assets/figs/interface/chat-edit.png" alt="Chat + Editor" loading="lazy">
+        <div class="card-label i18n" data-en="Chat + Editor — Timeline editing" data-zh="对话 + 编辑器 — 时间线编辑">Chat + Editor — Timeline editing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ── -->
+<section class="section" id="features">
+  <div class="container">
+    <p class="label fade-in i18n" data-en="KEY FEATURES" data-zh="核心功能">KEY FEATURES</p>
+    <h2 class="fade-in i18n" data-en="Everything Through Conversation" data-zh="一切通过对话完成" style="margin-bottom: 48px;">Everything Through Conversation</h2>
+  </div>
+  <div class="features-barrage">
+    <!-- Row 1: scroll left, slower -->
+    <div class="barrage-row scroll-left" style="--duration: 40s;">
+      <div class="barrage-pill"><span class="bp-icon">🎬</span><span class="bp-title i18n" data-en="Asset Analysis" data-zh="素材分析">Asset Analysis</span><span class="bp-desc i18n" data-en="Shot scale · Camera movement · Content understanding" data-zh="景别分析 · 运镜分析 · 内容理解">Shot scale · Camera movement · Content understanding</span></div>
+      <div class="barrage-pill"><span class="bp-icon">💬</span><span class="bp-title i18n" data-en="Chat-Based Editing" data-zh="对话式编辑">Chat-Based Editing</span><span class="bp-desc i18n" data-en="Add, remove, modify — all through conversation" data-zh="增删改 — 一切通过对话完成">Add, remove, modify — all through conversation</span></div>
+      <div class="barrage-pill"><span class="bp-icon">⚡</span><span class="bp-title i18n" data-en="Style Sharing" data-zh="风格分享">Style Sharing</span><span class="bp-desc i18n" data-en="Save &amp; reuse editing recipes as Skills" data-zh="将编辑配方保存为可复用 Skill">Save &amp; reuse editing recipes as Skills</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🖱️</span><span class="bp-title i18n" data-en="Drag-and-Drop Timeline" data-zh="拖拽时间线">Drag-and-Drop Timeline</span><span class="bp-desc i18n" data-en="Reorder, delete, or add clips directly" data-zh="直接拖拽、删除、添加片段">Reorder, delete, or add clips directly</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🎯</span><span class="bp-title i18n" data-en="Script Generation" data-zh="脚本生成">Script Generation</span><span class="bp-desc i18n" data-en="Auto-generate scripts from assets &amp; intent" data-zh="基于素材和意图自动生成脚本">Auto-generate scripts from assets &amp; intent</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🔄</span><span class="bp-title i18n" data-en="Real-Time Rendering" data-zh="实时渲染">Real-Time Rendering</span><span class="bp-desc i18n" data-en="Remotion Player — what you see is what you export" data-zh="Remotion Player — 所见即所得">Remotion Player — what you see is what you export</span></div>
+      <!-- duplicate for seamless loop -->
+      <div class="barrage-pill"><span class="bp-icon">🎬</span><span class="bp-title i18n" data-en="Asset Analysis" data-zh="素材分析">Asset Analysis</span><span class="bp-desc i18n" data-en="Shot scale · Camera movement · Content understanding" data-zh="景别分析 · 运镜分析 · 内容理解">Shot scale · Camera movement · Content understanding</span></div>
+      <div class="barrage-pill"><span class="bp-icon">💬</span><span class="bp-title i18n" data-en="Chat-Based Editing" data-zh="对话式编辑">Chat-Based Editing</span><span class="bp-desc i18n" data-en="Add, remove, modify — all through conversation" data-zh="增删改 — 一切通过对话完成">Add, remove, modify — all through conversation</span></div>
+      <div class="barrage-pill"><span class="bp-icon">⚡</span><span class="bp-title i18n" data-en="Style Sharing" data-zh="风格分享">Style Sharing</span><span class="bp-desc i18n" data-en="Save &amp; reuse editing recipes as Skills" data-zh="将编辑配方保存为可复用 Skill">Save &amp; reuse editing recipes as Skills</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🖱️</span><span class="bp-title i18n" data-en="Drag-and-Drop Timeline" data-zh="拖拽时间线">Drag-and-Drop Timeline</span><span class="bp-desc i18n" data-en="Reorder, delete, or add clips directly" data-zh="直接拖拽、删除、添加片段">Reorder, delete, or add clips directly</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🎯</span><span class="bp-title i18n" data-en="Script Generation" data-zh="脚本生成">Script Generation</span><span class="bp-desc i18n" data-en="Auto-generate scripts from assets &amp; intent" data-zh="基于素材和意图自动生成脚本">Auto-generate scripts from assets &amp; intent</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🔄</span><span class="bp-title i18n" data-en="Real-Time Rendering" data-zh="实时渲染">Real-Time Rendering</span><span class="bp-desc i18n" data-en="Remotion Player — what you see is what you export" data-zh="Remotion Player — 所见即所得">Remotion Player — what you see is what you export</span></div>
+    </div>
+    <!-- Row 2: scroll right, medium -->
+    <div class="barrage-row scroll-right" style="--duration: 45s;">
+      <div class="barrage-pill"><span class="bp-icon">🎨</span><span class="bp-title i18n" data-en="MG Animation" data-zh="MG 动画">MG Animation</span><span class="bp-desc i18n" data-en="Natural language → Remotion JSX components" data-zh="自然语言 → Remotion JSX 组件">Natural language → Remotion JSX components</span></div>
+      <div class="barrage-pill"><span class="bp-icon">📌</span><span class="bp-title i18n" data-en="Reference Modification" data-zh="引用修改">Reference Modification</span><span class="bp-desc i18n" data-en="Modify any element without affecting others" data-zh="修改任意元素，不影响其他部分">Modify any element without affecting others</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🎵</span><span class="bp-title i18n" data-en="Smart Music" data-zh="智能配乐">Smart Music</span><span class="bp-desc i18n" data-en="Auto-generate music matching video mood" data-zh="自动生成匹配视频氛围的音乐">Auto-generate music matching video mood</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🗣️</span><span class="bp-title i18n" data-en="AI Dubbing" data-zh="AI 配音">AI Dubbing</span><span class="bp-desc i18n" data-en="Voice cloning · Style selection · TTS synthesis" data-zh="声音克隆 · 音色选择 · TTS 合成">Voice cloning · Style selection · TTS synthesis</span></div>
+      <div class="barrage-pill"><span class="bp-icon">📝</span><span class="bp-title i18n" data-en="Auto Subtitles" data-zh="自动字幕">Auto Subtitles</span><span class="bp-desc i18n" data-en="Timeline-aligned subtitle rendering" data-zh="时间轴对齐的字幕渲染">Timeline-aligned subtitle rendering</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🎞️</span><span class="bp-title i18n" data-en="Transitions" data-zh="转场效果">Transitions</span><span class="bp-desc i18n" data-en="Push-pull, dissolve, and more — described in words" data-zh="推拉、溶解等 — 用语言描述即可">Push-pull, dissolve, and more — described in words</span></div>
+      <!-- duplicate for seamless loop -->
+      <div class="barrage-pill"><span class="bp-icon">🎨</span><span class="bp-title i18n" data-en="MG Animation" data-zh="MG 动画">MG Animation</span><span class="bp-desc i18n" data-en="Natural language → Remotion JSX components" data-zh="自然语言 → Remotion JSX 组件">Natural language → Remotion JSX components</span></div>
+      <div class="barrage-pill"><span class="bp-icon">📌</span><span class="bp-title i18n" data-en="Reference Modification" data-zh="引用修改">Reference Modification</span><span class="bp-desc i18n" data-en="Modify any element without affecting others" data-zh="修改任意元素，不影响其他部分">Modify any element without affecting others</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🎵</span><span class="bp-title i18n" data-en="Smart Music" data-zh="智能配乐">Smart Music</span><span class="bp-desc i18n" data-en="Auto-generate music matching video mood" data-zh="自动生成匹配视频氛围的音乐">Auto-generate music matching video mood</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🗣️</span><span class="bp-title i18n" data-en="AI Dubbing" data-zh="AI 配音">AI Dubbing</span><span class="bp-desc i18n" data-en="Voice cloning · Style selection · TTS synthesis" data-zh="声音克隆 · 音色选择 · TTS 合成">Voice cloning · Style selection · TTS synthesis</span></div>
+      <div class="barrage-pill"><span class="bp-icon">📝</span><span class="bp-title i18n" data-en="Auto Subtitles" data-zh="自动字幕">Auto Subtitles</span><span class="bp-desc i18n" data-en="Timeline-aligned subtitle rendering" data-zh="时间轴对齐的字幕渲染">Timeline-aligned subtitle rendering</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🎞️</span><span class="bp-title i18n" data-en="Transitions" data-zh="转场效果">Transitions</span><span class="bp-desc i18n" data-en="Push-pull, dissolve, and more — described in words" data-zh="推拉、溶解等 — 用语言描述即可">Push-pull, dissolve, and more — described in words</span></div>
+    </div>
+    <!-- Row 3: scroll left, faster -->
+    <div class="barrage-row scroll-left" style="--duration: 36s;">
+      <div class="barrage-pill"><span class="bp-icon">🧩</span><span class="bp-title i18n" data-en="Skill System" data-zh="技能系统">Skill System</span><span class="bp-desc i18n" data-en="Dynamically select &amp; combine skills per intent" data-zh="根据意图动态选择和组合技能">Dynamically select &amp; combine skills per intent</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🎬</span><span class="bp-title i18n" data-en="Vlog Mode" data-zh="Vlog 模式">Vlog Mode</span><span class="bp-desc i18n" data-en="One sentence → complete travel vlog" data-zh="一句话 → 完整旅行 Vlog">One sentence → complete travel vlog</span></div>
+      <div class="barrage-pill"><span class="bp-icon">📢</span><span class="bp-title i18n" data-en="Marketing Mode" data-zh="营销模式">Marketing Mode</span><span class="bp-desc i18n" data-en="Product images → promotional video" data-zh="产品图片 → 宣传视频">Product images → promotional video</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🎭</span><span class="bp-title i18n" data-en="Opening &amp; Ending Titles" data-zh="片头片尾">Opening &amp; Ending Titles</span><span class="bp-desc i18n" data-en="Describe style, Agent generates it" data-zh="描述风格，Agent 自动生成">Describe style, Agent generates it</span></div>
+      <div class="barrage-pill"><span class="bp-icon">📤</span><span class="bp-title i18n" data-en="Multi-Format Export" data-zh="多格式导出">Multi-Format Export</span><span class="bp-desc i18n" data-en="Various resolutions for highest quality" data-zh="多种分辨率确保最高质量">Various resolutions for highest quality</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🔗</span><span class="bp-title i18n" data-en="Style Import" data-zh="风格导入">Style Import</span><span class="bp-desc i18n" data-en="Import .md files to replicate editing styles" data-zh="导入 .md 文件复刻编辑风格">Import .md files to replicate editing styles</span></div>
+      <!-- duplicate for seamless loop -->
+      <div class="barrage-pill"><span class="bp-icon">🧩</span><span class="bp-title i18n" data-en="Skill System" data-zh="技能系统">Skill System</span><span class="bp-desc i18n" data-en="Dynamically select &amp; combine skills per intent" data-zh="根据意图动态选择和组合技能">Dynamically select &amp; combine skills per intent</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🎬</span><span class="bp-title i18n" data-en="Vlog Mode" data-zh="Vlog 模式">Vlog Mode</span><span class="bp-desc i18n" data-en="One sentence → complete travel vlog" data-zh="一句话 → 完整旅行 Vlog">One sentence → complete travel vlog</span></div>
+      <div class="barrage-pill"><span class="bp-icon">📢</span><span class="bp-title i18n" data-en="Marketing Mode" data-zh="营销模式">Marketing Mode</span><span class="bp-desc i18n" data-en="Product images → promotional video" data-zh="产品图片 → 宣传视频">Product images → promotional video</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🎭</span><span class="bp-title i18n" data-en="Opening &amp; Ending Titles" data-zh="片头片尾">Opening &amp; Ending Titles</span><span class="bp-desc i18n" data-en="Describe style, Agent generates it" data-zh="描述风格，Agent 自动生成">Describe style, Agent generates it</span></div>
+      <div class="barrage-pill"><span class="bp-icon">📤</span><span class="bp-title i18n" data-en="Multi-Format Export" data-zh="多格式导出">Multi-Format Export</span><span class="bp-desc i18n" data-en="Various resolutions for highest quality" data-zh="多种分辨率确保最高质量">Various resolutions for highest quality</span></div>
+      <div class="barrage-pill"><span class="bp-icon">🔗</span><span class="bp-title i18n" data-en="Style Import" data-zh="风格导入">Style Import</span><span class="bp-desc i18n" data-en="Import .md files to replicate editing styles" data-zh="导入 .md 文件复刻编辑风格">Import .md files to replicate editing styles</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Demo Showcase ── -->
+<section class="section" id="demos">
+  <div class="container">
+    <p class="label fade-in i18n" data-en="DEMO SHOWCASE" data-zh="演示视频">DEMO SHOWCASE</p>
+    <h2 class="fade-in i18n" data-en="See X-CUT in Action" data-zh="观看 X-CUT 实际效果" style="margin-bottom: 56px;">See X-CUT in Action</h2>
+    <p class="fade-in i18n" style="margin-bottom: 64px; color: #868584; font-size: 15px;"
+      data-en="To meet size requirements, all videos have been compressed. In X-CUT, you can export in various resolutions for highest quality."
+      data-zh="为满足大小限制，所有视频均经过压缩。在 X-CUT 中，您可以导出各种分辨率以确保最高质量。">
+      To meet size requirements, all videos have been compressed. In X-CUT, you can export in various resolutions for highest quality.
+    </p>
+
+    <!-- Vlog Creation -->
+    <div class="demo-block fade-in">
+      <div class="demo-header">
+        <p class="label i18n" data-en="VLOG CREATION" data-zh="VLOG 创作">VLOG CREATION</p>
+        <h3 class="i18n" data-en="Beach Travel Vlog" data-zh="海滩旅行 Vlog">Beach Travel Vlog</h3>
+      </div>
+      <div class="demo-meta">
+        <span class="i18n"
+          data-en="<strong>Assets:</strong> 5 travel video clips &nbsp;·&nbsp; <strong>Prompt:</strong> &ldquo;Help me make a beach travel vlog&rdquo;"
+          data-zh="<strong>素材：</strong>5 段旅行视频 &nbsp;·&nbsp; <strong>指令：</strong>&ldquo;帮我做一个海边旅行 vlog&rdquo;">
+          <strong>Assets:</strong> 5 travel video clips &nbsp;·&nbsp; <strong>Prompt:</strong> &ldquo;Help me make a beach travel vlog&rdquo;
+        </span>
+      </div>
+      <div class="demo-videos">
+        <div class="demo-video-wrap">
+          <video controls preload="metadata" playsinline><source src="assets/videos/vlog-creator.mp4" type="video/mp4"></video>
+          <div class="demo-video-label i18n" data-en="Screen Recording" data-zh="录屏过程">Screen Recording</div>
+        </div>
+        <div class="demo-video-wrap">
+          <video controls preload="metadata" playsinline><source src="assets/videos/vlog-res.mp4" type="video/mp4"></video>
+          <div class="demo-video-label i18n" data-en="Final Result" data-zh="最终效果">Final Result</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marketing Video -->
+    <div class="demo-block fade-in">
+      <div class="demo-header">
+        <p class="label i18n" data-en="MARKETING VIDEO" data-zh="营销视频">MARKETING VIDEO</p>
+        <h3 class="i18n" data-en="Xiaomi Yu7 Promotional Video" data-zh="小米 Yu7 宣传视频">Xiaomi Yu7 Promotional Video</h3>
+      </div>
+      <div class="demo-meta">
+        <span class="i18n"
+          data-en="<strong>Assets:</strong> 9 product pictures &nbsp;·&nbsp; <strong>Prompt:</strong> &ldquo;Make a promotional video for the Xiaomi Yu7&rdquo;"
+          data-zh="<strong>素材：</strong>9 张产品图片 &nbsp;·&nbsp; <strong>指令：</strong>&ldquo;帮小米 Yu7 做一个宣传视频&rdquo;">
+          <strong>Assets:</strong> 9 product pictures &nbsp;·&nbsp; <strong>Prompt:</strong> &ldquo;Make a promotional video for the Xiaomi Yu7&rdquo;
+        </span>
+      </div>
+      <div class="demo-videos">
+        <div class="demo-video-wrap">
+          <video controls preload="metadata" playsinline><source src="assets/videos/marketing-creator.mp4" type="video/mp4"></video>
+          <div class="demo-video-label i18n" data-en="Screen Recording" data-zh="录屏过程">Screen Recording</div>
+        </div>
+        <div class="demo-video-wrap">
+          <video controls preload="metadata" playsinline><source src="assets/videos/marketing-res.mp4" type="video/mp4"></video>
+          <div class="demo-video-label i18n" data-en="Final Result" data-zh="最终效果">Final Result</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Free Edit 1 -->
+    <div class="demo-block fade-in">
+      <div class="demo-header">
+        <p class="label i18n" data-en="FREE EDIT" data-zh="自由编辑">FREE EDIT</p>
+        <h3 class="i18n" data-en="Hainan Travel Guide Overlay" data-zh="海南旅游攻略叠加">Hainan Travel Guide Overlay</h3>
+      </div>
+      <div class="demo-meta">
+        <span class="i18n"
+          data-en="<strong>Assets:</strong> 1 video clip &nbsp;·&nbsp; <strong>Prompt:</strong> &ldquo;Generate a Hainan travel guide in the right third of the screen&rdquo; → &ldquo;Change the background to transparent&rdquo;"
+          data-zh="<strong>素材：</strong>1 段视频 &nbsp;·&nbsp; <strong>指令：</strong>&ldquo;在屏幕右侧三分之一生成海南旅游攻略&rdquo; → &ldquo;把背景改成透明&rdquo;">
+          <strong>Assets:</strong> 1 video clip &nbsp;·&nbsp; <strong>Prompt:</strong> &ldquo;Generate a Hainan travel guide in the right third of the screen&rdquo; → &ldquo;Change the background to transparent&rdquo;
+        </span>
+      </div>
+      <div class="demo-videos">
+        <div class="demo-video-wrap">
+          <video controls preload="metadata" playsinline><source src="assets/videos/free-edit.mp4" type="video/mp4"></video>
+          <div class="demo-video-label i18n" data-en="Screen Recording" data-zh="录屏过程">Screen Recording</div>
+        </div>
+        <div class="demo-video-wrap">
+          <video controls preload="metadata" playsinline><source src="assets/videos/free-edit-res.mp4" type="video/mp4"></video>
+          <div class="demo-video-label i18n" data-en="Final Result" data-zh="最终效果">Final Result</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Free Edit 2 -->
+    <div class="demo-block fade-in">
+      <div class="demo-header">
+        <p class="label i18n" data-en="FREE EDIT" data-zh="自由编辑">FREE EDIT</p>
+        <h3 class="i18n" data-en="Forest VLOG Transitions &amp; Title" data-zh="森林 VLOG 转场与标题">Forest VLOG Transitions &amp; Title</h3>
+      </div>
+      <div class="demo-meta">
+        <span class="i18n"
+          data-en="<strong>Assets:</strong> Multi video clips &nbsp;·&nbsp; <strong>Prompt:</strong> &ldquo;Add transitions&rdquo; → &ldquo;Change to push-pull effect; add a forest VLOG title with Chinese-English layout&rdquo;"
+          data-zh="<strong>素材：</strong>多段视频 &nbsp;·&nbsp; <strong>指令：</strong>&ldquo;给素材加转场&rdquo; → &ldquo;换成推拉效果；加一个森林 VLOG 标题，中英文排版&rdquo;">
+          <strong>Assets:</strong> Multi video clips &nbsp;·&nbsp; <strong>Prompt:</strong> &ldquo;Add transitions&rdquo; → &ldquo;Change to push-pull effect; add a forest VLOG title with Chinese-English layout&rdquo;
+        </span>
+      </div>
+      <div class="demo-videos">
+        <div class="demo-video-wrap">
+          <video controls preload="metadata" playsinline><source src="assets/videos/free-edit2.mp4" type="video/mp4"></video>
+          <div class="demo-video-label i18n" data-en="Screen Recording" data-zh="录屏过程">Screen Recording</div>
+        </div>
+        <div class="demo-video-wrap">
+          <video controls preload="metadata" playsinline><source src="assets/videos/free-edit-res2.mp4" type="video/mp4"></video>
+          <div class="demo-video-label i18n" data-en="Final Result" data-zh="最终效果">Final Result</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Style Replication -->
+    <div class="demo-block fade-in">
+      <div class="demo-header">
+        <p class="label i18n" data-en="STYLE SHARING &amp; REPLICATION" data-zh="风格分享与复用">STYLE SHARING &amp; REPLICATION</p>
+        <h3 class="i18n" data-en="Reuse Your Editing Recipe" data-zh="复用你的编辑配方">Reuse Your Editing Recipe</h3>
+      </div>
+      <div class="demo-meta">
+        <span class="i18n"
+          data-en="Share your editing recipe as a reusable style — export as <code>.md</code> or save to your space. Apply any style to a new project to instantly generate videos in the same style."
+          data-zh="将你的编辑配方分享为可复用的风格 — 导出为 <code>.md</code> 文件或保存到你的空间。应用任意风格到新项目，即刻生成同款视频。">
+          Share your editing recipe as a reusable style — export as <code>.md</code> or save to your space. Apply any style to a new project to instantly generate videos in the same style.
+        </span>
+      </div>
+      <div class="demo-videos demo-single">
+        <div class="demo-video-wrap">
+          <video controls preload="metadata" playsinline><source src="assets/videos/style-replication.mp4" type="video/mp4"></video>
+          <div class="demo-video-label i18n" data-en="Screen Recording" data-zh="录屏过程">Screen Recording</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Team ── -->
+<section class="section" id="team">
+  <div class="container" style="text-align: center;">
+    <p class="label fade-in i18n" data-en="TEAM" data-zh="团队">TEAM</p>
+    <h2 class="fade-in i18n" data-en="Built by" data-zh="构建者" style="margin-bottom: 48px;">Built by</h2>
+    <div class="team-grid fade-in">
+      <a href="https://github.com/DimplesL" target="_blank" rel="noopener" class="team-card">
+        <img src="https://github.com/DimplesL.png" alt="Yurui" class="team-avatar" loading="lazy">
+        <div class="team-name">Yurui</div>
+        <div class="team-link">@DimplesL</div>
+      </a>
+      <a href="https://github.com/junwei0812" target="_blank" rel="noopener" class="team-card">
+        <img src="https://github.com/junwei0812.png" alt="Junwei" class="team-avatar" loading="lazy">
+        <div class="team-name">Junwei</div>
+        <div class="team-link">@junwei0812</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container">
+    <p class="footer-slogan">Talk to the Agent. Enjoy your cut.</p>
+    <p class="footer-meta">
+      <span class="i18n"
+        data-en="Licensed under <a href='https://github.com/MeiGen-AI/X-Cut/blob/main/LICENSE' target='_blank' rel='noopener'>AGPL-3.0</a> · <a href='https://github.com/MeiGen-AI/X-Cut' target='_blank' rel='noopener'>GitHub</a>"
+        data-zh="基于 <a href='https://github.com/MeiGen-AI/X-Cut/blob/main/LICENSE' target='_blank' rel='noopener'>AGPL-3.0</a> 许可 · <a href='https://github.com/MeiGen-AI/X-Cut' target='_blank' rel='noopener'>GitHub</a>">
+        Licensed under <a href="https://github.com/MeiGen-AI/X-Cut/blob/main/LICENSE" target="_blank" rel="noopener">AGPL-3.0</a> · <a href="https://github.com/MeiGen-AI/X-Cut" target="_blank" rel="noopener">GitHub</a>
+      </span>
+    </p>
+  </div>
+</footer>
+
+<script>
+// ── Language Toggle ──
+(function() {
+  const KEY = 'xcut-lang';
+  const toggle = document.getElementById('langToggle');
+  const elements = document.querySelectorAll('.i18n');
+
+  function detectLang() {
+    const saved = localStorage.getItem(KEY);
+    if (saved) return saved;
+    const nav = (navigator.language || '').toLowerCase();
+    return nav.startsWith('zh') ? 'zh' : 'en';
+  }
+
+  function applyLang(lang) {
+    elements.forEach(el => {
+      const text = el.getAttribute('data-' + lang);
+      if (text) el.innerHTML = text;
+    });
+    toggle.textContent = lang === 'en' ? 'EN / 中' : '中 / EN';
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    localStorage.setItem(KEY, lang);
+  }
+
+  let currentLang = detectLang();
+  applyLang(currentLang);
+
+  toggle.addEventListener('click', function() {
+    currentLang = currentLang === 'en' ? 'zh' : 'en';
+    applyLang(currentLang);
+  });
+})();
+
+// ── Mobile Menu ──
+(function() {
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', function() {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+})();
+
+// ── Scroll Fade-In ──
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+})();
+</script>
+
+</body>
+</html>
